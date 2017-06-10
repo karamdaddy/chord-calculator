@@ -1,3 +1,6 @@
 .chordButton-chord {
-    padding: 20px;
+    padding: 8px 14px;
+    background: #7171ff;
+    margin: 10px;
+    border-radius: 2px;
 }

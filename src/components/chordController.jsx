@@ -4,6 +4,7 @@ import { compose } from "redux";
 import ChordButtons from "./chord-buttons"
 import { fullChordList } from "../constants/constants";
 import { getChord } from "../reducers/index";
+import "./chord-controller.css";
 
 
 function mapStateToProps(state){
@@ -44,8 +45,12 @@ function ChordList({ currentChord }) {
     const list = calculateSacleForKey(currentChord);
     return (
         <div>
-            <ChordButtons />
-            {list}
+            <div className="chordList-buttons">
+                <ChordButtons />
+            </div>
+            <div className="chordList-list">
+                {list}
+            </div>
         </div>
     )
 }
