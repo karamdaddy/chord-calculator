@@ -2,25 +2,35 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import "./chord-buttons.css";
-import { fullChordList } from "../constants/constants";
-import { selectChord } from "../actions/actions";
+// import { fullChordList } from "../constants/constants";
+import { transposeDown, transposeUp } from "../actions/actions";
+import { getChord } from "../reducers/index"
 
+
+function mapStateToProps(state) {
+    return {
+        currentChord: getChord(state)
+    }
+}
 
 function mapDispatchToProps(dispatch) {
     return {
-        chordClicked: (chord) => {
-            dispatch(selectChord(chord))
-        }
+        transposeDown: (chord) => {
+            dispatch(transposeDown(chord))
+        },
+        transposeUp: (chord) => {
+            dispatch(transposeUp(chord))
+        },
     }
 }
 
 
-function ChordButtons({ chordClicked }) {
+function ChordButtons({ transposeDown, transposeUp, currentChord }) {
     return (
         <div>
-            {fullChordList.map((chord, index) =>{
-                return <span key={index} onClick={() => chordClicked(chord)} className="chordButton-chord">{chord}</span>
-            })}
+            <span onClick={() => transposeDown(currentChord)}>down </span>
+            {currentChord}
+            <span onClick={() => transposeUp(currentChord)}> up</span>
         </div>
     )
 }
@@ -28,6 +38,6 @@ function ChordButtons({ chordClicked }) {
 
 
 const enhance = compose(
-   connect(null, mapDispatchToProps)
+   connect(mapStateToProps, mapDispatchToProps)
 );
 export default enhance(ChordButtons);

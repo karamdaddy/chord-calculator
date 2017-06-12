@@ -1,7 +1,15 @@
-export const SELECT_CHORD = "SELECT_CHORD";
-export function selectChord(chord) {
+export const TRANSPOSE_DOWN = "TRANSPOSE_DOWN";
+export function transposeDown(currentChord) {
     return {
-        type: SELECT_CHORD,
-        payload: { data: chord }
+        type: TRANSPOSE_DOWN,
+        payload: { data: currentChord }
+    }
+}
+
+export const TRANSPOSE_UP = "TRANSPOSE_UP";
+export function transposeUp(currentChord) {
+    return {
+        type: TRANSPOSE_UP,
+        payload: { data: currentChord }
     }
 }
