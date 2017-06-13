@@ -1,11 +1,24 @@
-.minorMajor-button {
+/*.minorMajor-selected {
+    font-weight: 600
+}*/
+
+.minorMajor-button, .minorMajor-toggle {
     display: inline-block;
-    border: 1px solid black;
+}
+
+.minorMajor-button {
     padding: 0 20px;
-    margin-right: -1px;
 }
 
-
-.minorMajor-selected {
-    background: lightgray;
+.minorMajor-toggle {
+    width: 80px;
 }
+
+.minorMajor-major {
+    text-align: left;
+}
+
+.minorMajor-minor {
+    text-align: right;
+}
+
