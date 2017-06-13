@@ -45,7 +45,7 @@ function ChordList({ currentChord }) {
     const list = calculateSacleForKey(currentChord);
     return (
         <div>
-            <div className="chordList-buttons">
+            <div className="chordList-controls">
                 <ChordButtons />
             </div>
             <div className="chordList-list">

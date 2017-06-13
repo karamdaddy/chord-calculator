@@ -2,7 +2,6 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import "./chord-buttons.css";
-// import { fullChordList } from "../constants/constants";
 import { transposeDown, transposeUp } from "../actions/actions";
 import { getChord } from "../reducers/index"
 
@@ -27,10 +26,10 @@ function mapDispatchToProps(dispatch) {
 
 function ChordButtons({ transposeDown, transposeUp, currentChord }) {
     return (
-        <div>
-            <span onClick={() => transposeDown(currentChord)}>down </span>
-            {currentChord}
-            <span onClick={() => transposeUp(currentChord)}> up</span>
+        <div className="chordContorls">
+            <div className="chordControls-button" onClick={() => transposeDown(currentChord)}>-</div>
+            <div className="chordControls-currentChord">{currentChord}</div>
+            <div className="chordControls-button" onClick={() => transposeUp(currentChord)}>+</div>
         </div>
     )
 }
