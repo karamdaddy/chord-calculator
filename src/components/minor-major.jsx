@@ -22,7 +22,7 @@ function mapDispatchToProps(dispatch) {
 
 function MinorMajor({ isMajor, toggleIsMajor }) {
     return (
-        <div className="minorMajor">
+        <div className="minorMajor noSelection">
             <div onClick={() => toggleIsMajor(true)} className={`minorMajor-button${isMajor ? " minorMajor-selected" : ""}`}>Major</div>
             <div onClick={() => toggleIsMajor(false)} className={`minorMajor-button${!isMajor ? " minorMajor-selected" : ""}`}>Minor</div>
         </div>
