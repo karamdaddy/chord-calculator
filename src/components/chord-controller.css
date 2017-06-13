@@ -1,5 +1,10 @@
 .chordList-list {
-    border: 1px solid grey;
+    width: 500px;
+    margin: auto;
+    font-size: 36px;
+    padding: 20px 0;
+    margin-top: 10px;
+    border: 1px lightgray solid;
 }
 
 .chordList-controls {
