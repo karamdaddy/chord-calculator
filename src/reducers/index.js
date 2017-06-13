@@ -1,4 +1,4 @@
-import chords, { getCurrentChord } from './chords';
+import chords, { getCurrentChord, isMajor } from './chords';
 import { combineReducers } from 'redux';
 
 
@@ -14,4 +14,8 @@ export default rootReducer;
 
 export function getChord(state){
     return getCurrentChord(state.chords);
+}
+
+export function isScaleMajor(state) {
+    return isMajor(state.chords);
 }

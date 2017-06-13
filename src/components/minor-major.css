@@ -1,0 +1,11 @@
+.minorMajor-button {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 0 20px;
+    margin-right: -1px;
+}
+
+
+.minorMajor-selected {
+    background: lightgray;
+}

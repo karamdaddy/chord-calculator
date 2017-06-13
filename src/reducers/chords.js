@@ -1,8 +1,9 @@
-import { TRANSPOSE_DOWN, TRANSPOSE_UP } from '../actions/actions';
+import { TRANSPOSE_DOWN, TRANSPOSE_UP, TOGGLE_MAJOR_MINOR } from '../actions/actions';
 import { fullChordList } from "../constants/constants";
 
 const defaultState = {
-    currentChord: "C"
+    currentChord: "C",
+    isMajor: true
 }
 
 function chords(state = defaultState, action) {
@@ -11,6 +12,8 @@ function chords(state = defaultState, action) {
             return Object.assign({}, state, { currentChord: fullChordList[indexOfNewChord(action.payload.data, "down")] });
         case TRANSPOSE_UP:
             return Object.assign({}, state, { currentChord: fullChordList[indexOfNewChord(action.payload.data, "up")] });
+        case TOGGLE_MAJOR_MINOR:
+            return Object.assign({}, state, { isMajor: action.payload.data });
         default:
             return state;
     }
@@ -42,4 +45,8 @@ export default chords;
 
 export function getCurrentChord(state) {
     return state.currentChord;
+}
+
+export function isMajor(state) {
+    return state.isMajor;
 }

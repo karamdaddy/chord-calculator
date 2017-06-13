@@ -13,3 +13,11 @@ export function transposeUp(currentChord) {
         payload: { data: currentChord }
     }
 }
+
+export const TOGGLE_MAJOR_MINOR = "TOGGLE_MAJOR_MINOR";
+export function toggleMajorMinor(isMajor) {
+    return {
+        type: TOGGLE_MAJOR_MINOR,
+        payload: { data: isMajor }
+    }
+}
