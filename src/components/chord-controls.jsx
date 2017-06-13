@@ -26,7 +26,7 @@ function mapDispatchToProps(dispatch) {
 
 function ChordControls({ transposeDown, transposeUp, currentChord }) {
     return (
-        <div className="chordContorls">
+        <div className="chordContorls noSelection">
             <div className="chordControls-button" onClick={() => transposeDown(currentChord)}>-</div>
             <div className="chordControls-currentChord">{currentChord}</div>
             <div className="chordControls-button" onClick={() => transposeUp(currentChord)}>+</div>
