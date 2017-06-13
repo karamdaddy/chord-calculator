@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from "react-redux";
 import { compose } from "redux";
-import ChordButtons from "./chord-buttons"
+import ChordControls from "./chord-controls"
 import { fullChordList } from "../constants/constants";
 import { getChord } from "../reducers/index";
 import "./chord-controller.css";
@@ -46,7 +46,7 @@ function ChordList({ currentChord }) {
     return (
         <div>
             <div className="chordList-controls">
-                <ChordButtons />
+                <ChordControls />
             </div>
             <div className="chordList-list">
                 {list}
