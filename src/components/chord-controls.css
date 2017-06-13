@@ -12,7 +12,7 @@
     font-weight: 600;
     border-radius: 2px;
     cursor: pointer;
-    transition: 0.2s box-shadow;
+    transition: 0.2s box-shadow, 0.4s border-radius;
 }
 
 .chordControls-currentChord {
