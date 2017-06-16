@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import ChordControls from "./chord-controls";
 import MinorMajor from "./minor-major";
-import { fullChordList } from "../constants/constants";
 import { getChord, getScale } from "../reducers/index";
 import "./chord-controller.css";
 

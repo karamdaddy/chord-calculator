@@ -53,15 +53,15 @@ function calculateScaleForKey(startingChord, isMajor) {
     const minorScale = [0, 2, 1, 2, 2, 1, 2, 2];
 
     if (isMajor){
-        majorScale.map((value, i) => {
-            index = index + value;
-            constructedChordList.push(fullChordList[index%sizeOfChordsList] + ' ');
+        majorScale.map((value) => {
+            index += value;
+            return constructedChordList.push(fullChordList[index%sizeOfChordsList] + ' ');
         });
     }
     else {
         minorScale.map((value, i) => {
-            index = index + value;
-            constructedChordList.push(fullChordList[index%sizeOfChordsList] + ' ');
+            index += value;
+            return constructedChordList.push(fullChordList[index%sizeOfChordsList] + ' ');
         });
     }
 
