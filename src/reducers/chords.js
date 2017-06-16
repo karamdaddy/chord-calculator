@@ -4,7 +4,7 @@ import { fullChordList } from "../constants/constants";
 const defaultState = {
     currentChord: "C",
     isMajor: true,
-    currentScale: calculateScaleForKey("C")
+    currentScale: calculateScaleForKey("C", true)
 }
 
 function chords(state = defaultState, action) {
@@ -12,12 +12,12 @@ function chords(state = defaultState, action) {
     switch (action.type) {
         case TRANSPOSE_DOWN:
             newChord = fullChordList[indexOfNewChord(action.payload.data, "down")];
-            return Object.assign({}, state, { currentChord: newChord, currentScale: calculateScaleForKey(newChord) });
+            return Object.assign({}, state, { currentChord: newChord, currentScale: calculateScaleForKey(newChord, isMajor(state)) });
         case TRANSPOSE_UP:
             newChord = fullChordList[indexOfNewChord(action.payload.data, "up")];
-            return Object.assign({}, state, { currentChord: newChord, currentScale: calculateScaleForKey(newChord) });
+            return Object.assign({}, state, { currentChord: newChord, currentScale: calculateScaleForKey(newChord, isMajor(state)) });
         case TOGGLE_MAJOR_MINOR:
-            return Object.assign({}, state, { isMajor: action.payload.data });
+            return Object.assign({}, state, { isMajor: action.payload.data, currentScale: calculateScaleForKey(getCurrentChord(state), action.payload.data) });
         default:
             return state;
     }
@@ -42,28 +42,27 @@ function indexOfNewChord(startingChord, transposeDirection) {
     return indexOfNewChord;
 }
 
-function calculateScaleForKey(startingChord) {
+function calculateScaleForKey(startingChord, isMajor) {
+    //Major W W H W W W H  OR  2 2 1 2 2 2 1
+    //Minor W H W W H W W  OR  2 1 2 2 1 2 2 
     let constructedChordList = [];
-    const indexOfChordInArray = fullChordList.indexOf(startingChord);
+    let index = fullChordList.indexOf(startingChord);
+    const sizeOfChordsList = fullChordList.length;
 
-    let numOfCyles = 0;
-    for (let i = indexOfChordInArray; constructedChordList.length < 7; i++){
-        if (i >= fullChordList.length){
-            i = 0;
-        }
-        switch (numOfCyles){
-            case 0:
-            case 2:
-            case 4:
-            case 5:
-            case 7:
-            case 9:
-            case 11:
-                constructedChordList =  constructedChordList.concat(`${fullChordList[i]} `);
-                break;
-            default:
-        }
-        numOfCyles++;
+    const majorScale = [0, 2, 2, 1, 2, 2, 2, 1];
+    const minorScale = [0, 2, 1, 2, 2, 1, 2, 2];
+
+    if (isMajor){
+        majorScale.map((value, i) => {
+            index = index + value;
+            constructedChordList.push(fullChordList[index%sizeOfChordsList] + ' ');
+        });
+    }
+    else {
+        minorScale.map((value, i) => {
+            index = index + value;
+            constructedChordList.push(fullChordList[index%sizeOfChordsList] + ' ');
+        });
     }
 
     return constructedChordList;
