@@ -15,7 +15,7 @@ function mapStateToProps(state){
 }
 
 
-function calculateSacleForKey(startingChord) {
+function calculateScaleForKey(startingChord) {
     let constructedChordList = [];
     const indexOfChordInArray = fullChordList.indexOf(startingChord);
 
@@ -43,7 +43,7 @@ function calculateSacleForKey(startingChord) {
 }
 
 function ChordList({ currentChord }) {
-    const list = calculateSacleForKey(currentChord);
+    const list = calculateScaleForKey(currentChord);
     return (
         <div>
             <div className="chordList-controls">
