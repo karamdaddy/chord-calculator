@@ -3,15 +3,19 @@ import { fullChordList } from "../constants/constants";
 
 const defaultState = {
     currentChord: "C",
-    isMajor: true
+    isMajor: true,
+    currentScale: calculateScaleForKey("C")
 }
 
 function chords(state = defaultState, action) {
+    let newChord;
     switch (action.type) {
         case TRANSPOSE_DOWN:
-            return Object.assign({}, state, { currentChord: fullChordList[indexOfNewChord(action.payload.data, "down")] });
+            newChord = fullChordList[indexOfNewChord(action.payload.data, "down")];
+            return Object.assign({}, state, { currentChord: newChord, currentScale: calculateScaleForKey(newChord) });
         case TRANSPOSE_UP:
-            return Object.assign({}, state, { currentChord: fullChordList[indexOfNewChord(action.payload.data, "up")] });
+            newChord = fullChordList[indexOfNewChord(action.payload.data, "up")];
+            return Object.assign({}, state, { currentChord: newChord, currentScale: calculateScaleForKey(newChord) });
         case TOGGLE_MAJOR_MINOR:
             return Object.assign({}, state, { isMajor: action.payload.data });
         default:
@@ -38,6 +42,33 @@ function indexOfNewChord(startingChord, transposeDirection) {
     return indexOfNewChord;
 }
 
+function calculateScaleForKey(startingChord) {
+    let constructedChordList = [];
+    const indexOfChordInArray = fullChordList.indexOf(startingChord);
+
+    let numOfCyles = 0;
+    for (let i = indexOfChordInArray; constructedChordList.length < 7; i++){
+        if (i >= fullChordList.length){
+            i = 0;
+        }
+        switch (numOfCyles){
+            case 0:
+            case 2:
+            case 4:
+            case 5:
+            case 7:
+            case 9:
+            case 11:
+                constructedChordList =  constructedChordList.concat(`${fullChordList[i]} `);
+                break;
+            default:
+        }
+        numOfCyles++;
+    }
+
+    return constructedChordList;
+}
+
 
 
 export default chords;
@@ -49,4 +80,8 @@ export function getCurrentChord(state) {
 
 export function isMajor(state) {
     return state.isMajor;
+}
+
+export function getCurrentScale(state) {
+    return state.currentScale;
 }
