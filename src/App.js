@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChordController from './components/chordController';
+import ChordController from './components/chord-controller';
 import './App.css';
 
 class App extends Component {
