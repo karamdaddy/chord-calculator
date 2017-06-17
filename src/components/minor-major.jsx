@@ -25,7 +25,10 @@ function MinorMajor({ isMajor, toggleIsMajor }) {
         <div className="minorMajor noSelection">
             <div onClick={() => toggleIsMajor(true)} className="minorMajor-button">Major</div>
             <div className={`minorMajor-toggle ${isMajor ? "minorMajor-major" : "minorMajor-minor"}`}>
-                :D
+                <label className="switch">
+                    <input type="checkbox" />
+                        <div className="slider round"></div>
+                </label>
             </div>
             <div onClick={() => toggleIsMajor(false)} className="minorMajor-button">Minor</div>
         </div>
