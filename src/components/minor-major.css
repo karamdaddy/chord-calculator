@@ -1,13 +1,10 @@
-/*.minorMajor-selected {
-    font-weight: 600
-}*/
-
 .minorMajor-button, .minorMajor-toggle {
     display: inline-block;
 }
 
 .minorMajor-button {
     padding: 0 20px;
+    width: 55px;
 }
 
 .minorMajor-toggle {
@@ -22,6 +19,9 @@
     text-align: right;
 }
 
+.minorMajor-button.selected {
+  font-weight: 600;
+}
 
 
 
