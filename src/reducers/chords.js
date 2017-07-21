@@ -53,6 +53,7 @@ function calculateScaleForKey(startingChord, isMajor) {
     const minorScale = [0, 2, 1, 2, 2, 1, 2, 2];
 
     const minorChordsForMajorScale = [1, 2, 5];
+    const minorChordsForMinorScale = [0, 3, 4];
 
     if (isMajor){
         majorScale.map((value) => {
@@ -67,6 +68,8 @@ function calculateScaleForKey(startingChord, isMajor) {
             index += value;
             return constructedChordList.push(fullChordList[index%sizeOfChordsList]);
         });
+        minorChordsForMinorScale.map(value => constructedChordList[value] = `${constructedChordList[value]}m`);
+        constructedChordList[1] = `${constructedChordList[1]}dim`
     }
 
     return constructedChordList;
