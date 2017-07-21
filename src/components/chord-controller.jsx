@@ -24,7 +24,7 @@ function ChordList({ currentChord, currentScale }) {
                 <MinorMajor />
             </div>
             <div className="chordList-list">
-                {currentScale}
+                {currentScale.join(' ')}
             </div>
         </div>
     )
