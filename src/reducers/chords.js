@@ -1,4 +1,4 @@
-import { TRANSPOSE_DOWN, TRANSPOSE_UP, TOGGLE_MAJOR_MINOR } from '../actions/actions';
+import { TOGGLE_MAJOR_MINOR, SELECT_CHORD } from '../actions/actions';
 import { fullChordList } from "../constants/constants";
 
 const defaultState = {
@@ -8,38 +8,14 @@ const defaultState = {
 }
 
 function chords(state = defaultState, action) {
-    let newChord;
     switch (action.type) {
-        case TRANSPOSE_DOWN:
-            newChord = fullChordList[indexOfNewChord(action.payload.data, "down")];
-            return Object.assign({}, state, { currentChord: newChord, currentScale: calculateScaleForKey(newChord, isMajor(state)) });
-        case TRANSPOSE_UP:
-            newChord = fullChordList[indexOfNewChord(action.payload.data, "up")];
-            return Object.assign({}, state, { currentChord: newChord, currentScale: calculateScaleForKey(newChord, isMajor(state)) });
+        case SELECT_CHORD:
+            return Object.assign({}, state, { currentChord: action.payload.data, currentScale: calculateScaleForKey(action.payload.data, isMajor(state)) });
         case TOGGLE_MAJOR_MINOR:
             return Object.assign({}, state, { isMajor: action.payload.data, currentScale: calculateScaleForKey(getCurrentChord(state), action.payload.data) });
         default:
             return state;
     }
-}
-
-
-function indexOfNewChord(startingChord, transposeDirection) {
-    let indexOfCurrentChord = fullChordList.indexOf(startingChord);
-    let indexOfNewChord;
-    if (transposeDirection === "down") {
-        indexOfNewChord = indexOfCurrentChord - 1;
-        if (indexOfNewChord < 0) {
-            indexOfNewChord = fullChordList.length - 1;
-        }
-    }
-    else {
-        indexOfNewChord = indexOfCurrentChord + 1;
-        if (indexOfNewChord === fullChordList.length) {
-            indexOfNewChord = 0;
-        }
-    }
-    return indexOfNewChord;
 }
 
 function calculateScaleForKey(startingChord, isMajor) {

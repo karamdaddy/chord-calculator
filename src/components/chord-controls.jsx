@@ -2,8 +2,9 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import "./chord-controls.css";
-import { transposeDown, transposeUp } from "../actions/actions";
+import { selectChord as reducerSelectChord } from "../actions/actions";
 import { getChord, isScaleMajor } from "../reducers/index"
+import { fullChordList } from "../constants/constants";
 
 
 function mapStateToProps(state) {
@@ -15,23 +16,19 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        transposeDown: (chord) => {
-            dispatch(transposeDown(chord))
-        },
-        transposeUp: (chord) => {
-            dispatch(transposeUp(chord))
-        },
+        selectChord: (chord) => {
+            dispatch(reducerSelectChord(chord))
+        }
     }
 }
 
 
-function ChordControls({ transposeDown, transposeUp, currentChord, isMajor }) {
+function ChordControls({ selectChord, currentChord, isMajor }) {
     const chordToDisplay = isMajor ? currentChord : `${currentChord}m`
     return (
         <div className="chordContorls noSelection">
-            <div className="chordControls-button" onClick={() => transposeDown(currentChord)}>-</div>
-            <div className="chordControls-currentChord">{chordToDisplay}</div>
-            <div className="chordControls-button" onClick={() => transposeUp(currentChord)}>+</div>
+        {fullChordList.map(chord => <div key={chord} className="chordControls-button" onClick={() => selectChord(chord)}>{chord}</div>)}
+        <div className="chordControls-currentChord">{chordToDisplay}</div>
         </div>
     )
 }
